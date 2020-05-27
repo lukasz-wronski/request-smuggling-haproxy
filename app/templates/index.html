@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We smuggle...</title>
+</head>
+
+<body>
+    {% for message in messages %}
+    <div>{{ message }}</div>
+    {% endfor %}
+
+    Post message:
+
+    <textarea id="newpost"></textarea>
+    <a onclick="sendPost()" href="#">Publish post</a>
+
+    <script>
+        async function sendPost() {
+            await fetch('/', { method: "POST", body: document.getElementById('newpost').value })
+            window.location.reload()
+        }
+    </script>
+
+</body>
+
+</html>
