@@ -1,29 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
+{% include 'header.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>We smuggle...</title>
-</head>
+<strong>Newest posts:</strong>
 
-<body>
-    {% for message in messages %}
-    <div>{{ message }}</div>
-    {% endfor %}
+{% for message in messages %}
+<div class="post">{{ message }}</div>
+{% endfor %}
+<a class="stats-link" href="/stats">check the stats (logged users only)</a>
 
-    Post message:
+<div id="post-form">
+    <strong>Post a new message:</strong>
 
     <textarea id="newpost"></textarea>
     <a onclick="sendPost()" href="#">Publish post</a>
+</div>
 
-    <script>
-        async function sendPost() {
-            await fetch('/', { method: "POST", body: document.getElementById('newpost').value })
-            window.location.reload()
-        }
-    </script>
+<script>
+    async function sendPost() {
+        await fetch('/', { method: "POST", body: document.getElementById('newpost').value })
+        window.location.reload()
+    }
+</script>
 
-</body>
-
-</html>
+{% include 'footer.html' %}
